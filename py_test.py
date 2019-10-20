@@ -1,37 +1,15 @@
-﻿from subprocess import*
-import time
-import os
-def start_program(f_input):
-    k = Popen(["programs_testings\\testing.exe"], stdin=PIPE, stdout=PIPE, shell=True)
+import subprocess as sub
 
-    start_time = time.perf_counter()
-    h = k.communicate(input=f_input)[0].split()
-    stop_time = time.perf_counter()
-    print(int(h[0]), int(h[1]))
-    print("time: ", round(stop_time - start_time, 10))
-    #return h, start_time, stop_time
+f_in = open("../input.txt","r")
+f_out = open("../output.txt","w")
+f_er = open("../error.txt", "w")
+k= sub.Popen("../testing.exe",stdin=sub.PIPE, stdout=f_out, shell = True)
+#k = call("testing.exe", stdin=f_in, stdout=f_out, shell=True)
 
-#start_program()
-list_dir = os.listdir("case_test")
-for i in list_dir:
-    f_in = open("case_test/" + i + "/input.txt", "r")
-    f_expected = open("case_test/" + i + "/output.txt", "r")
-    list_case_in = []
-    #start_program(f_in)
-
-    for i in f_in:
-        start_program(i.encode())
+#print(k.communicate(input=b'7\n'))
 
 
-
-    f_in.close()
-    f_expected.close()
-'''
-
-
-f_er = open("error.txt", "w")
-
-
+f_in.close()
+f_out.close()
 f_er.close()
-'''
 
