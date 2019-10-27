@@ -18,32 +18,42 @@ for i in list_prog:
     for j in list_p1:
         stud_dic[i].append(j)
 #print(stud_dic)
-task_in = {}
-task_out = {}
-dir_test = os.listdir("case_test")
-for i in dir_test:
-    dir_test1 = os.listdir("case_test/" + i)
-    fi=open( "case_test/"+ i +"/" + dir_test1[0],"r")
-    fo = open( "case_test/"+ i +"/" + dir_test1[1],"r")
-    task_in[i] = []
-    task_out[i] = []
-    for j in fi:
-        task_in[i].append(j)
-    fi.close()
-    for j in fo:
-        task_out[i].append(j)
-    fo.close()
-print(task_in["case_"+ str(1)])
+task_i = []
+task_out = []
+task_in=[]
+fi = open("case_test/case_1/input.txt", "r")
+fo = open("case_test/case_1/output.txt", "r")
+
+for j in fi:
+    task_i.append(j)
+fi.close()
+for i in range(0, len(task_i),2):
+    task_in.append(task_i[i]+task_i[i+1])
+for j in fo:
+    task_out.append(j)
+fo.close()
+
+#print(task_in)
 #print(task_out)
+
 stud_answer = {}
+ls_answer = []
 for i in stud_dic:
+    count=0
     stud_answer[i]=[]
 
-    print(i)
+    #print(i)
     for j in stud_dic[i]:
-        inp = "python test_file/"+i+"/"+j
-        out  = task_in["case_"+j[-4]]
-        for date in out:
-            print(inp, date)
-
-            print(print_rez(date, inp))
+        ls_answer = []
+        try:
+            inp = "python test_file/"+i+"/task_1.py"
+            for date in task_in:
+                #print(inp, date)
+                ls_answer.append(print_rez(date, inp))
+        except:
+            print("NO file")
+    #print(ls_answer)
+    for m in  range(len(ls_answer)):
+        if ls_answer[m] == task_out[m]:
+            count += 1
+    print(i, count*5)
