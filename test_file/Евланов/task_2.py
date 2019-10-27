@@ -1,5 +1,5 @@
-a = int(input())
-b = int(input())
+a, b = map(int, input().split())
+
 c=b%a
 x=b//a
 if c==0 and x%2==0:

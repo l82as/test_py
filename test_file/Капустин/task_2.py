@@ -1,5 +1,5 @@
-A=int(input())
-B=int(input())
+A, B = map(int, input().split())
+
 while A>0 and B>0:
     
     S==0<=S<=2000

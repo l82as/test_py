@@ -3,13 +3,12 @@ N=open("output.txt", "w")
 
 P, S = map(int, F.readline().split())
 """
-P, S = map(int, input("P, S = ").split())
+P, S = map(int, input().split())
 
-x=(P-(P**2-4*S)**0.5)/2
-y=(P+(P**2-4*S)**0.5)/2
+x=round((P-(P**2-4*S)**0.5)/2)
+y=round((P+(P**2-4*S)**0.5)/2)
 
-print("x = ", x)
-print("y = ", y)
+print(min(x, y), max(x, y) )
 
 """
 N.write(str(x))

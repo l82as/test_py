@@ -3,8 +3,8 @@ import os, openpyxl
 wb = openpyxl.load_workbook('resalt.xlsx')
 sheet = wb.active
 sheet['A1'].value = 'FIO'
-sheet['B1'].value = "task_1"
-print(sheet['A1'].value)
+sheet['F1'].value = "task_5"
+
 
 def print_rez(f_in_date, py_file):
     try:
@@ -25,17 +25,16 @@ for i in list_prog:
     for j in list_p1:
         stud_dic[i].append(j)
 #print(stud_dic)
-task_i = []
+
 task_out = []
 task_in=[]
-fi = open("case_test/case_1/input.txt", "r")
-fo = open("case_test/case_1/output.txt", "r")
+fi = open("case_test/case_5/input.txt", "r")
+fo = open("case_test/case_5/output.txt", "r")
 
 for j in fi:
-    task_i.append(j)
+    task_in.append(j)
 fi.close()
-for i in range(0, len(task_i),2):
-    task_in.append(task_i[i]+task_i[i+1])
+
 for j in fo:
     task_out.append(j)
 fo.close()
@@ -50,7 +49,7 @@ for i in stud_dic:
     ex_i += 1
     sheet['A'+str(ex_i)].value = i
     if len(stud_dic[i]) != 0:
-        inp = "python test_file/" + i + "/task_1.py"
+        inp = "python test_file/" + i + "/task_5.py"
         for date in task_in:
             ls_answer.append(print_rez(date, inp))
 
@@ -62,10 +61,10 @@ for i in stud_dic:
 
     if len(ls_answer)==0:
         print(i, "No file")
-        sheet['B' + str(ex_i)].value = "No file"
+        sheet['F' + str(ex_i)].value = "No file"
 
     else:
         print(i, count*5)
-        sheet['B' + str(ex_i)].value = count*5
+        sheet['F' + str(ex_i)].value = count*5
     ls_answer = []
 wb.save('resalt.xlsx')

@@ -8,4 +8,5 @@ for i in range(n):
         r+=a
     else:
         h+=a
-print(r,h)
+print(r)
+print(h)
